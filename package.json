@@ -1,0 +1,33 @@
+{
+  "name": "backend",
+  "version": "1.0.0",
+  "main": "index.js",
+  "scripts": {
+    "test": "echo \"Error: no test specified\" && exit 1",
+    "start": "node index.js"
+  },
+  "author": "",
+  "license": "ISC",
+  "description": "",
+  "dependencies": {
+    "base-x": "^5.0.1",
+    "base62": "^2.0.2",
+    "bcrypt": "^5.1.1",
+    "body-parser": "^1.20.3",
+    "cors": "^2.8.5",
+    "dotenv": "^16.5.0",
+    "ejs": "^3.1.10",
+    "express": "^4.21.2",
+    "express-async-handler": "^1.2.0",
+    "imagekit": "^6.0.0",
+    "joi": "^17.13.3",
+    "mongoose": "^8.15.1",
+    "multer": "^1.4.5-lts.1",
+    "path": "^0.12.7",
+    "pg": "^8.14.0",
+    "sharp": "^0.33.5",
+    "streamifier": "^0.1.1",
+    "uuid": "^11.1.0",
+    "zlib": "^1.0.5"
+  }
+}
