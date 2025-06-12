@@ -12,12 +12,13 @@ const UserRoute = require("./Routers/userRouter");
 const ProductRoute = require("./Routers/productRouter");
 const AdminPanel = require("./Routers/adminRouter");
 const OrderRoute = require("./Routers/orderRouter");
+const ReportRoute = require("./Routers/reeportRoute");
 
 app.use("/api/user/",UserRoute);
 app.use("/api/product/",ProductRoute);
 app.use("/api/admin/",AdminPanel);
 app.use("/api/order/",OrderRoute);
-
+app.use("/api/reports/",ReportRoute)
 app.get("/",(req,res)=>{
     res.json("api is working").end();
 });

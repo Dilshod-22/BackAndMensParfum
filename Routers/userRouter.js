@@ -7,7 +7,10 @@ const {
     createUser,
     searchUser,
     updateUser,
-    deleteUser
+    deleteUser,
+    addToWishlist,
+    getUserCart,
+    removeItemFromCart
 } = require("../Controller/userCTRL");
 
 const storage = multer.diskStorage({
@@ -26,6 +29,10 @@ Route.post("/createUser",createUser);
 Route.post("/searchUser",searchUser);
 Route.put("/updateUser/:id",updateUser);
 Route.delete("/deleteUser/:id",deleteUser);
+Route.post("/addToWishList/:id",addToWishlist);
+Route.get("/getUserCart/:id",getUserCart);
+Route.delete("/userProductDelete",removeItemFromCart);
+
 
 
 

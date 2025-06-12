@@ -11,9 +11,6 @@ const ProductImageSchema = new mongoose.Schema(
 
 const ExtraInfoSchema = new mongoose.Schema(
   {
-    // Agar extrainfo schema oldindan belgilanmagan bo‘lsa,
-    // uni `Mixed` qilib qo‘yish imkoniyati bor:
-    // Agar siz loyihada aniq struktura bo‘lsa, shu yerga kiritishingiz mumkin.
   },
   { strict: false }
 );

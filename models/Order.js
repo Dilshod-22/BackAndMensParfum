@@ -6,7 +6,7 @@ const OrderItemSchema = new Schema(
   {
     productId: { type: Schema.Types.ObjectId, ref: 'Product', required: true },
     count: { type: Number, required: true },
-    price:{Type:Number}
+    price:{type:Number}
   },
   { _id: false }
 );

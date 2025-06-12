@@ -5,10 +5,12 @@ const CartItemSchema = new mongoose.Schema(
   {
     id: { type: mongoose.Schema.Types.ObjectId, ref: 'Product' },
     productname: { type: String, required: true },
+    productBrand: {type: String},
+    count:{type:Number},
     price: { type: Number, required: true },
     main_image: { type: String, default: null },
-  },
-  { _id: false }
+    category:{tyoe:String}
+  }
 );
 
 const UserSchema = new mongoose.Schema(

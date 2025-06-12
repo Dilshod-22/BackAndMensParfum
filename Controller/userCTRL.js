@@ -172,6 +172,108 @@ async function deleteUser(req, res) {
     res.status(500).json({ error: "Server xatosi" });
   }
 }
+async function addToWishlist(req, res) {
+  console.log(req.params.id);
+  
+  const userId = req.params.id;
+  const {
+    id,
+    productname,
+    productBrand,
+    count,
+    price,
+    main_image,
+    category
+  } = req.body;
+
+  try {
+    const user = await User.findById(userId);
+
+    if (!user) return res.status(404).json({ message: 'User not found' });
+
+    const newItem = {
+      id,
+      productname,
+      productBrand,
+      count,
+      price,
+      main_image,
+      category
+    };
+
+    user.shoppingcart.push(newItem);
+
+    await user.save();
+
+    res.status(200).json({ message: 'Item added to cart', shoppingcart: user.shoppingcart });
+  } catch (err) {
+    console.error(err);
+    res.status(500).json({ message: 'Internal server error' });
+  }
+}
+
+async function getUserCart(req, res) {
+  const userId = req.params.id;
+
+  try {
+    const user = await User.findById(userId);
+
+    if (!user) return res.status(404).json({ message: 'User not found' });
+
+    // Guruhlash va count jamlash
+    const mergedCart = [];
+
+    const map = new Map();
+
+    for (const item of user.shoppingcart) {
+      const key = item.id.toString();
+
+      if (map.has(key)) {
+        // count ni qo‘shish
+        map.get(key).count += item.count;
+      } else {
+        // nusxa olish (chuqur emas)
+        map.set(key, { ...item.toObject() });
+      }
+    }
+
+    for (const value of map.values()) {
+      mergedCart.push(value);
+    }
+
+    res.status(200).json({ shoppingcart: mergedCart });
+  } catch (err) {
+    console.error(err);
+    res.status(500).json({ message: 'Internal server error' });
+  }
+}
+
+async function removeItemFromCart(req, res) {
+  const { userId, productId } = req.query;
+  console.log(req.query);
+  
+
+  try {
+    const user = await User.findById(userId);
+
+    if (!user) return res.status(404).json({ message: 'User not found' });
+
+    // filter orqali mahsulotni olib tashlaymiz
+    const updatedCart = user.shoppingcart.filter(
+      (item) => item.id.toString() !== productId
+    );
+
+    user.shoppingcart = updatedCart;
+    await user.save();
+
+    res.status(200).json({ message: 'Item removed from cart', shoppingcart: user.shoppingcart });
+  } catch (err) {
+    console.error(err);
+    res.status(500).json({ message: 'Internal server error' });
+  }
+}
+
+
 
 module.exports = {
   getAllUser,
@@ -180,4 +282,7 @@ module.exports = {
   createUser,
   updateUser,
   deleteUser,
+  addToWishlist,
+  getUserCart,
+  removeItemFromCart
 };

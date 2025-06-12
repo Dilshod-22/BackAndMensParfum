@@ -7,6 +7,8 @@ const sellerModel = require("../models/sellerModel")
 // 1. createOrder
 // POST /api/orders
 async function createOrder(req, res) {
+  console.log(req.body);
+  
   try {
     const { create_date, itemsK, status, client_id, address } = req.body;
     console.log(req.body);
@@ -38,6 +40,8 @@ async function createOrder(req, res) {
 
 // kerak() funktsiyasi to‘g‘rilangan
 const kerak = async (itv, client_id,create_date) => {
+  console.log("kirdi kerkaga");
+  
   const newEntry = new sellerModel({
     productId: itv.productId,
     count: itv.count,
